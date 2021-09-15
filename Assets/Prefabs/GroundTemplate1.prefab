@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7368441866510522740}
+  - component: {fileID: 282684123}
+  - component: {fileID: 282684122}
+  - component: {fileID: 114849292029509290}
   m_Layer: 0
   m_Name: GroundTemplate1
   m_TagString: Untagged
@@ -23,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441866510522741}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7368441868209550078}
@@ -39,6 +42,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &282684123
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368441866510522741}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &282684122
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368441866510522741}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: b39c1fb29a129f6168ec52c944be8dfc, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+--- !u!114 &114849292029509290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368441866510522741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a5b557784b406ee85d8746addbbb75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7368441866574226811
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441866574226808}
   - component: {fileID: 7368441866574226809}
-  - component: {fileID: 7368441866574226810}
+  - component: {fileID: 7893817011423192273}
   m_Layer: 8
   m_Name: Ground (6)
   m_TagString: Untagged
@@ -65,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441866574226811}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5734537, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 7.68, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -119,7 +176,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441866574226810
+--- !u!61 &7893817011423192273
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441866765307002}
   - component: {fileID: 7368441866765307003}
-  - component: {fileID: 7368441866765307004}
+  - component: {fileID: 6901766184987125834}
   m_Layer: 8
   m_Name: Ground (2)
   m_TagString: Untagged
@@ -171,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441866765307005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.109344, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 2.56, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -225,7 +282,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441866765307004
+--- !u!61 &6901766184987125834
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441867418206976}
   - component: {fileID: 7368441867418206977}
-  - component: {fileID: 7368441867418206978}
+  - component: {fileID: 2559325013638289160}
   m_Layer: 8
   m_Name: Ground (4)
   m_TagString: Untagged
@@ -277,7 +334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441867418206979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.726399, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 5.12, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -331,7 +388,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441867418206978
+--- !u!61 &2559325013638289160
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,7 +424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441867683986493}
   - component: {fileID: 7368441867683986494}
-  - component: {fileID: 7368441867683986495}
+  - component: {fileID: 3233003563438028122}
   m_Layer: 8
   m_Name: Ground (7)
   m_TagString: Untagged
@@ -383,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441867683986480}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3163989, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 8.96, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -437,7 +494,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441867683986495
+--- !u!61 &3233003563438028122
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -473,7 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441867935081248}
   - component: {fileID: 7368441867935081249}
-  - component: {fileID: 7368441867935081250}
+  - component: {fileID: 2435227016801118961}
   m_Layer: 8
   m_Name: Ground (3)
   m_TagString: Untagged
@@ -489,7 +546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441867935081251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.8763986, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 3.84, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -543,7 +600,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441867935081250
+--- !u!61 &2435227016801118961
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -579,7 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441868152057068}
   - component: {fileID: 7368441868152057069}
-  - component: {fileID: 7368441868152057070}
+  - component: {fileID: 2550736600446499049}
   m_Layer: 8
   m_Name: Ground (1)
   m_TagString: Untagged
@@ -595,7 +652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441868152057071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.339344, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 1.28, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -649,7 +706,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441868152057070
+--- !u!61 &2550736600446499049
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -685,7 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441868182801162}
   - component: {fileID: 7368441868182801163}
-  - component: {fileID: 7368441868182801164}
+  - component: {fileID: 4776394983775881652}
   m_Layer: 8
   m_Name: Ground (5)
   m_TagString: Untagged
@@ -701,7 +758,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441868182801165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.786399, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 6.4, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -755,7 +812,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441868182801164
+--- !u!61 &4776394983775881652
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -791,7 +848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441868209550078}
   - component: {fileID: 7368441868209550079}
-  - component: {fileID: 7368441868209550064}
+  - component: {fileID: 2342094261291774774}
   m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
@@ -807,7 +864,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441868209550065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.596399, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -861,7 +918,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441868209550064
+--- !u!61 &2342094261291774774
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -897,7 +954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7368441868444358368}
   - component: {fileID: 7368441868444358369}
-  - component: {fileID: 7368441868444358370}
+  - component: {fileID: 1336566249636280128}
   m_Layer: 8
   m_Name: Ground (8)
   m_TagString: Untagged
@@ -913,7 +970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368441868444358371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11639899, y: -2.5779908, z: 0.0044824197}
+  m_LocalPosition: {x: 10.24, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7368441866510522740}
@@ -967,7 +1024,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7368441868444358370
+--- !u!61 &1336566249636280128
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
