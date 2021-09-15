@@ -25,11 +25,16 @@ public class CharacterMoveController : MonoBehaviour
     // Added in "Add jump animation"
     private Animator anim;
 
+    // Added in "Add jumping sound"
+    private CharacterSoundController sound;
+
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        // Added in "Add jumping sound"
+        sound = GetComponent<CharacterSoundController>();
     }
 
     // Update is called once per frame
@@ -42,6 +47,8 @@ public class CharacterMoveController : MonoBehaviour
             if (isOnGround)
             {
                 isJumping = true;
+                // Added in "Add jumping sound"
+                sound.PlayJump();
             }
         }
 
@@ -83,4 +90,10 @@ public class CharacterMoveController : MonoBehaviour
     {
         Debug.DrawLine(transform.position, transform.position + (Vector3.down * groundRaycastDistance), Color.white);
     }
+
+    // Added in "Add jumping sound"
+    // public void PlayJump()
+    // {
+    //     audioPlayer.PlayOneShot(jump);
+    // }
 }
