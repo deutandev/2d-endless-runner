@@ -16,7 +16,10 @@ public class CharacterMoveController : MonoBehaviour
     private bool isOnGround;
 
     // Added in "Using Raycast & Layers"
-
+    [Header("Ground Raycast")]
+    public float groundRaycastDistance;
+    public LayerMask groundLayerMask;
+    
     private Rigidbody2D rig;
 
     // Start is called before the first frame update
@@ -41,8 +44,6 @@ public class CharacterMoveController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 velocityVector = rig.velocity;
-        
         // raycast ground
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundRaycastDistance, groundLayerMask);
         if (hit)
@@ -67,7 +68,6 @@ public class CharacterMoveController : MonoBehaviour
         }
 
         velocityVector.x = Mathf.Clamp(velocityVector.x + moveAccel * Time.deltaTime, 0.0f, maxSpeed);
-
         rig.velocity = velocityVector;
     }
 
