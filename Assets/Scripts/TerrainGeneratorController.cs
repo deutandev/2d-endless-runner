@@ -18,6 +18,13 @@ public class TerrainGeneratorController : MonoBehaviour
     private List<GameObject> spawnedTerrain;
     private float lastGeneratedPositionX;
 
+    // Added in "Generate & delete object"
+    private float lastRemovedPositionX;
+
+    // Added in "Generate & delete object"
+    [Header("Force Early Template")]
+    public List<TerrainTemplateController> earlyTerrainTemplates;
+
     private float GetHorizontalPositionStart()
     {
         return gameCamera.ViewportToWorldPoint(new Vector2(0f, 0f)).x + areaStartOffset;
@@ -46,6 +53,15 @@ public class TerrainGeneratorController : MonoBehaviour
     {
         spawnedTerrain = new List<GameObject>();
         lastGeneratedPositionX = GetHorizontalPositionStart();
+        // added in "Generate & remove object"
+        lastRemovedPositionX = lastGeneratedPositionX - terrainTemplateWidth;
+        
+        foreach (TerrainTemplateController terrain in earlyTerrainTemplates)
+        {
+            GenerateTerrain(lastGeneratedPositionX, terrain);
+            lastGeneratedPositionX += terrainTemplateWidth;
+        }
+
         while (lastGeneratedPositionX < GetHorizontalPositionEnd())
         {
             GenerateTerrain(lastGeneratedPositionX);
@@ -61,6 +77,13 @@ public class TerrainGeneratorController : MonoBehaviour
             GenerateTerrain(lastGeneratedPositionX);
             lastGeneratedPositionX += terrainTemplateWidth;
         } 
+
+        // Remove used terrain
+        while (lastRemovedPositionX + terrainTemplateWidth < GetHorizontalPositionStart())
+        {
+            lastRemovedPositionX += terrainTemplateWidth;
+            RemoveTerrain(lastRemovedPositionX);
+        }
     }
 
     private void GenerateTerrain(float posX, TerrainTemplateController forceterrain = null)
@@ -68,5 +91,28 @@ public class TerrainGeneratorController : MonoBehaviour
         GameObject newTerrain = Instantiate(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
         newTerrain.transform.position = new Vector2(posX, 0f);
         spawnedTerrain.Add(newTerrain);
+    }
+
+    // function to remove terrain
+    private void RemoveTerrain(float posX)
+    {
+        GameObject terrainToRemove = null;
+
+        // find terrain at posX
+        foreach (GameObject item in spawnedTerrain)
+        {
+            if (item.transform.position.x == posX)
+            {
+                terrainToRemove = item;
+                break;
+            }
+        }
+    
+        // after found;
+        if (terrainToRemove != null)
+        {
+            spawnedTerrain.Remove(terrainToRemove);
+            Destroy(terrainToRemove);
+        }
     }
 }
