@@ -25,6 +25,9 @@ public class TerrainGeneratorController : MonoBehaviour
     [Header("Force Early Template")]
     public List<TerrainTemplateController> earlyTerrainTemplates;
 
+    // pool list
+    private Dictionary<string, List<GameObject>> pool;
+
     private float GetHorizontalPositionStart()
     {
         return gameCamera.ViewportToWorldPoint(new Vector2(0f, 0f)).x + areaStartOffset;
@@ -51,6 +54,9 @@ public class TerrainGeneratorController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // init pool
+        pool = new Dictionary<string, List<GameObject>()>;
+
         spawnedTerrain = new List<GameObject>();
         lastGeneratedPositionX = GetHorizontalPositionStart();
         // added in "Generate & remove object"
@@ -88,7 +94,20 @@ public class TerrainGeneratorController : MonoBehaviour
 
     private void GenerateTerrain(float posX, TerrainTemplateController forceterrain = null)
     {
-        GameObject newTerrain = Instantiate(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
+        // GameObject newTerrain = Instantiate(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
+        
+        // Added in Object Pooling
+        GameObject newTerrain = null;
+
+        if (forceTerrain == null)
+        {
+            newTerrain = GenerateFromPool(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
+        }
+        else
+        {
+            newTerrain = GenerateFromPool(forceTerrain.gameObject, transform);
+        }
+        
         newTerrain.transform.position = new Vector2(posX, 0f);
         spawnedTerrain.Add(newTerrain);
     }
@@ -114,5 +133,55 @@ public class TerrainGeneratorController : MonoBehaviour
             spawnedTerrain.Remove(terrainToRemove);
             Destroy(terrainToRemove);
         }
+    }
+
+    // pool function
+    private GameObject GenerateFromPool(GameObject item, Transform parent)
+    {
+        if (pool.ContainsKey(item.name))
+        {
+            // if item available in pool
+            if (pool[item.name].Count > 0)
+            {
+                GameObject newItemFromPool = pool[item.name][0];
+                pool[item.name].Remove(newItemFromPool);
+                newItemFromPool.SetActive(true);
+                return newItemFromPool;
+            }
+        }
+        else
+        {
+            // if item list not defined, create new one
+            pool.Add(item.name, new List<GameObject>());
+        }
+
+        // create new one if no item available in pool
+        GameObject newItem = Instantiate(item, parent);
+        newItem.name = item.name;
+        return newItem;
+    }
+    
+    private void ReturnToPool(GameObject item)
+    {
+        if (!pool.ContainsKey(item.name))
+        {
+            Debug.LogError("INVALID POOL ITEM!!");
+        }
+
+        pool[item.name].Add(item);
+        item.SetActive(false);
+    }
+
+    // debug
+    private void OnDrawGizmos()
+    {
+        Vector3 areaStartPosition = transform.position;
+        Vector3 areaEndPosition = transform.position;
+
+        areaStartPosition.x = GetHorizontalPositionStart();
+        areaEndPosition.x = GetHorizontalPositionEnd();
+
+        Debug.DrawLine(areaStartPosition + Vector3.up * debugLineHeight / 2, areaStartPosition + Vector3.down * debugLineHeight / 2, Color.red);
+        Debug.DrawLine(areaEndPosition + Vector3.up * debugLineHeight / 2, areaEndPosition + Vector3.down * debugLineHeight / 2, Color.red);
     }
 }
