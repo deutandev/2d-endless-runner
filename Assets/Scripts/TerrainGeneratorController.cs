@@ -55,7 +55,7 @@ public class TerrainGeneratorController : MonoBehaviour
     void Start()
     {
         // init pool
-        pool = new Dictionary<string, List<GameObject>()>;
+        pool = new Dictionary<string, List<GameObject>>();
 
         spawnedTerrain = new List<GameObject>();
         lastGeneratedPositionX = GetHorizontalPositionStart();
@@ -97,18 +97,10 @@ public class TerrainGeneratorController : MonoBehaviour
         // GameObject newTerrain = Instantiate(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
         
         // Added in Object Pooling
-        GameObject newTerrain = null;
+        GameObject newTerrain = Instantiate(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
 
-        if (forceTerrain == null)
-        {
-            newTerrain = GenerateFromPool(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
-        }
-        else
-        {
-            newTerrain = GenerateFromPool(forceTerrain.gameObject, transform);
-        }
-        
         newTerrain.transform.position = new Vector2(posX, 0f);
+
         spawnedTerrain.Add(newTerrain);
     }
 
@@ -170,18 +162,5 @@ public class TerrainGeneratorController : MonoBehaviour
 
         pool[item.name].Add(item);
         item.SetActive(false);
-    }
-
-    // debug
-    private void OnDrawGizmos()
-    {
-        Vector3 areaStartPosition = transform.position;
-        Vector3 areaEndPosition = transform.position;
-
-        areaStartPosition.x = GetHorizontalPositionStart();
-        areaEndPosition.x = GetHorizontalPositionEnd();
-
-        Debug.DrawLine(areaStartPosition + Vector3.up * debugLineHeight / 2, areaStartPosition + Vector3.down * debugLineHeight / 2, Color.red);
-        Debug.DrawLine(areaEndPosition + Vector3.up * debugLineHeight / 2, areaEndPosition + Vector3.down * debugLineHeight / 2, Color.red);
     }
 }
