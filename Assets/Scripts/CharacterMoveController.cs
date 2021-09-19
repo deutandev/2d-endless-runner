@@ -35,6 +35,14 @@ public class CharacterMoveController : MonoBehaviour
     public float scoringRatio;
     private float lastPositionX;
 
+    // Added in "Game Over behaviour"
+    [Header("GameOver")]
+    public GameObject gameOverScreen;
+    public float fallPositionY;
+
+    [Header("Camera")]
+    public CameraMoveController gameCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +82,12 @@ public class CharacterMoveController : MonoBehaviour
             score.IncreaseCurrentScore(scoreIncrement);
             lastPositionX += distancePassed;
         }
+
+        // game over
+        if (transform.position.y < fallPositionY)
+        {
+            GameOver();
+        }
     }
 
     void FixedUpdate()
@@ -109,6 +123,22 @@ public class CharacterMoveController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Debug.DrawLine(transform.position, transform.position + (Vector3.down * groundRaycastDistance), Color.white);
+    }
+
+    // Added in "game over behaviour"
+    private void GameOver()
+    {
+        // set high score
+        score.FinishScoring();
+
+        // stop camera movement
+        gameCamera.enabled = false;
+
+        // show gameover
+        gameOverScreen.SetActive(true);
+
+        // disable this too
+        this.enabled = false;
     }
 
     // Added in "Add jumping sound"
